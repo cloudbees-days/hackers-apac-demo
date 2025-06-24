@@ -21,7 +21,7 @@ jobs:
           credential: ${{ secrets.argocd_cred }}
           projectname: default
           projectdescription: created via the cloudbees Unify
-          applicationname: "Hello world"
+          applicationname: hello-world
           repourl: https://github.com/helm/examples.git
           targetrevision: 1
           destnamespace: applications
