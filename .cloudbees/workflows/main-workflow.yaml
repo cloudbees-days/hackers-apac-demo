@@ -23,7 +23,7 @@ jobs:
           projectdescription: created via the cloudbees Unify
           applicationname: hello-world
           repourl: https://github.com/helm/examples.git
-          targetrevision: 1
+          targetrevision: 1.0.0
           destnamespace: applications
           chartname: hello-world
           deploytype: helm
