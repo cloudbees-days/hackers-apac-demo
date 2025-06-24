@@ -24,7 +24,7 @@ jobs:
           applicationname: "Hello world"
           repourl: https://helm.github.io/examples.git
           repopath: charts/hello-world
-          targetrevision: "$BUILD_ID"
+          targetrevision: 1
           destnamespace: applications
           chartname: hello-world
           deploytype: helm
