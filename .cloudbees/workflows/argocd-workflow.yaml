@@ -1,0 +1,26 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: My workflow
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  build:
+    steps:
+      - uses: guru-actions/argocd-create-update-project@0.25
+        name: deploy_argocd
+        with:
+          serverurl: "https://a68e2f2d9325d4c398c676143f593e29-390043336.eu-central-1.elb.amazonaws.com/"
+          user: ${{ vars.argocd_username }}
+          credential: ${{ secrets.argocd_cred }}
+          projectname: "default"
+          projectdescription: "created via the cloudbees Unify"
+          applicationname: "Hello world"
+          repourl: "https://helm.github.io/examples"
+          targetrevision: "$BUILD_ID"
+          destnamespace: "applications"
+          chartname: "hello-world"
+          deploytype: "helm"
