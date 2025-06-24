@@ -16,18 +16,18 @@ jobs:
       - uses: guru-actions/argocd-create-update-project@0.25
         name: deployment through argocd
         with:
-          serverurl: "https://a68e2f2d9325d4c398c676143f593e29-390043336.eu-central-1.elb.amazonaws.com/"
+          serverurl: https://a68e2f2d9325d4c398c676143f593e29-390043336.eu-central-1.elb.amazonaws.com
           user: ${{ vars.argocd_username }}
           credential: ${{ secrets.argocd_cred }}
-          projectname: "default"
-          projectdescription: "created via the cloudbees Unify"
+          projectname: default
+          projectdescription: created via the cloudbees Unify
           applicationname: "Hello world"
-          repourl: "https://helm.github.io/examples"
-          repopath: "charts/hello-world"
+          repourl: https://helm.github.io/examples.git
+          repopath: charts/hello-world
           targetrevision: "$BUILD_ID"
-          destnamespace: "applications"
-          chartname: "hello-world"
-          deploytype: "helm"
+          destnamespace: applications
+          chartname: hello-world
+          deploytype: helm
       - name: Run Jenkins Job
         kind: test
         uses: cloudbees-io/jenkins-run-job@v2
