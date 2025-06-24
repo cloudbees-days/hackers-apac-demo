@@ -11,7 +11,7 @@ jobs:
   build:
     steps:
       - uses: guru-actions/argocd-create-update-project@0.25
-        name: deploy_argocd
+        name: deployment through argocd
         with:
           serverurl: "https://a68e2f2d9325d4c398c676143f593e29-390043336.eu-central-1.elb.amazonaws.com/"
           user: ${{ vars.argocd_username }}
