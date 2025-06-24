@@ -22,7 +22,7 @@ jobs:
           projectname: default
           projectdescription: created via the cloudbees Unify
           applicationname: "Hello world"
-          repourl: https://helm.github.io/examples.git
+          repourl: https://github.com/helm/examples.git
           repopath: charts/hello-world
           targetrevision: 1
           destnamespace: applications
