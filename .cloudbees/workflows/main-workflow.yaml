@@ -27,7 +27,7 @@ jobs:
  #         targetrevision: hello-world-0.1.0
  #         repopath: charts/hello-world
  #         deploytype: git
-      - name: Run Jenkins Job
+      - name: Run Jenkins Jobs
         kind: test
         uses: cloudbees-io/jenkins-run-job@v2
         continue-on-error: true
