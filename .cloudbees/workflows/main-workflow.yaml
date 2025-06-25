@@ -26,7 +26,7 @@ jobs:
           destnamespace: applications
           targetrevision: 0.1.0
           repopath: charts/hello-world
-          deploytype: helm
+          deploytype: git
       - name: Run Jenkins Job
         kind: test
         uses: cloudbees-io/jenkins-run-job@v2
