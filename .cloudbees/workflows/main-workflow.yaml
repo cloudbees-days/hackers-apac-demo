@@ -24,6 +24,7 @@ jobs:
           applicationname: hello-world
           repourl: https://github.com/helm/examples.git
           destnamespace: applications
+          targetrevision: 0.1.0
           path: charts/hello-world
           deploytype: helm
       - name: Run Jenkins Job
