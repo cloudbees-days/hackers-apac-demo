@@ -13,8 +13,8 @@ permissions:
 jobs:
   test:
     steps:
-      - uses: guru-actions/terraform-plan-apply-action@0.1
-        name: provision resources through Terraform Cloud
+      - name: provision resources through Terraform Cloud
+        uses: guru-actions/terraform-plan-apply-action@0.1
         with:
           workspace-id: ${{ secrets.TERRAFORM_WORKSPACE_ID }}
           token: ${{ secrets.TERRAFORM_TOKEN }}
@@ -177,8 +177,8 @@ jobs:
   deploy:
     environment: PAUL Production
     steps:
-      - uses: guru-actions/terraform-plan-apply-action@0.1
-        name: provision resources through Terraform Cloud
+      - name: provision resources through Terraform Cloud
+        uses: guru-actions/terraform-plan-apply-action@0.1
         with:
           workspace-id: ${{ secrets.terraform-workspace-id }}
           token: ${{ secrets.terraform-token }}
