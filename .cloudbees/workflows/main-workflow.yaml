@@ -13,7 +13,7 @@ permissions:
 jobs:
   test:
     steps:
-      - uses: guru-actions/Terraform-plan-apply-action@0.1
+      - uses: guru-actions/terraform-plan-apply-action@0.1
         name: provision resources through Terraform Cloud
         with:
           workspace-id: ${{ secrets.TERRAFORM_WORKSPACE_ID }}
