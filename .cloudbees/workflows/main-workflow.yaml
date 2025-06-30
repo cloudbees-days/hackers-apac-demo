@@ -16,8 +16,8 @@ jobs:
       - uses: guru-actions/Terraform-plan-apply-action@0.1
         name: provision resources through Terraform Cloud
         with:
-          workspace-id: ${{ secrets.terraform-workspace-id }}
-          token: ${{ secrets.terraform-token }}
+          workspace-id: ${{ secrets.TERRAFORM_WORKSPACE_ID }}
+          token: ${{ secrets.TERRAFORM_TOKEN }}
           auto-apply: true
 
       - name: Run Jenkins Jobs
