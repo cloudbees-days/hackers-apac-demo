@@ -13,6 +13,13 @@ permissions:
 jobs:
   test:
     steps:
+      - uses: guru-actions/Terraform-plan-apply-action@0.1
+        name: provision resources through Terraform Cloud
+        with:
+          workspace-id: ${{ secrets.terraform-workspace-id }}
+          token: ${{ secrets.terraform-token }}
+          auto-apply: true
+
       - name: Run Jenkins Jobs
         kind: test
         uses: cloudbees-io/jenkins-run-job@v2
@@ -168,7 +175,7 @@ jobs:
             | MINOR_COUNT          | ${{ steps.FetchSonarQubeIssues.outputs.MINOR_COUNT }} |
           format: MARKDOWN
   deploy:
-    environment: Paul Production
+    environment: PAUL Production
     steps:
       - uses: guru-actions/Terraform-plan-apply-action@0.1
         name: provision resources through Terraform Cloud
