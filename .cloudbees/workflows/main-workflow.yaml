@@ -178,7 +178,7 @@ jobs:
     environment: PAUL Production
     steps:
       - name: provision resources through Terraform Cloud
-        uses: guru-actions/terraform-plan-apply-action@0.1
+        uses: guru-actions/terraform-plan-apply-action@0.11
         with:
           workspace-id: ${{ secrets.terraform-workspace-id }}
           token: ${{ secrets.terraform-token }}
