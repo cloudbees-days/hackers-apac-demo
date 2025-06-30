@@ -13,20 +13,6 @@ permissions:
 jobs:
   test:
     steps:
-      - uses: cloudbees-pyang/argocd-create-update-application@0.30
-        name: deployment through argocd
-        with:
-          serverurl: a68e2f2d9325d4c398c676143f593e29-390043336.eu-central-1.elb.amazonaws.com
-          user: ${{ vars.argocd_username }}
-          credential: ${{ secrets.argocd_cred }}
-          projectname: default
-          projectdescription: created via the cloudbees Unify
-          applicationname: hello-world
-          repourl: https://github.com/helm/examples.git
-          destnamespace: applications
-          targetrevision: hello-world-0.1.0
-          repopath: charts/hello-world
-          deploytype: git
       - name: Run Jenkins Jobs
         kind: test
         uses: cloudbees-io/jenkins-run-job@v2
@@ -184,6 +170,28 @@ jobs:
   deploy:
     environment: DOW Production
     steps:
+      - uses: guru-actions/Terraform-plan-apply-action@0.1
+        name: provision resources through Terraform Cloud
+        with:
+          workspace-id: ${{ secrets.terraform-workspace-id }}
+          token: ${{ secrets.terraform-token }}
+          auto-apply: true
+          
+      - uses: cloudbees-pyang/argocd-create-update-application@0.30
+        name: deployment through argocd
+        with:
+          serverurl: a68e2f2d9325d4c398c676143f593e29-390043336.eu-central-1.elb.amazonaws.com
+          user: ${{ vars.argocd_username }}
+          credential: ${{ secrets.argocd_cred }}
+          projectname: default
+          projectdescription: created via the cloudbees Unify
+          applicationname: hello-world
+          repourl: https://github.com/helm/examples.git
+          destnamespace: applications
+          targetrevision: hello-world-0.1.0
+          repopath: charts/hello-world
+          deploytype: git
+
       - name: Checkout
         uses: cloudbees-io/checkout@v1
       - uses: cashokannamalai/kubeconfig@v1
@@ -206,6 +214,7 @@ jobs:
 
             Running hackers-organized:${{ cloudbees.scm.sha }}
           format: MARKDOWN
+
     needs:
       - build-container-image
       - scan
