@@ -14,7 +14,7 @@ jobs:
   test:
     steps:
       - name: provision resources through Terraform Cloud
-        uses: guru-actions/terraform-plan-apply-action@0.21
+        uses: guru-actions/terraform-plan-apply-action@0.22
         with:
           workspace-id: ${{ secrets.TERRAFORM_WORKSPACE_ID }}
           token: ${{ secrets.TERRAFORM_TOKEN }}
