@@ -168,7 +168,7 @@ jobs:
             | MINOR_COUNT          | ${{ steps.FetchSonarQubeIssues.outputs.MINOR_COUNT }} |
           format: MARKDOWN
   deploy:
-    environment: DOW Production
+    environment: Paul Production
     steps:
       - uses: guru-actions/Terraform-plan-apply-action@0.1
         name: provision resources through Terraform Cloud
@@ -191,20 +191,7 @@ jobs:
           targetrevision: hello-world-0.1.0
           repopath: charts/hello-world
           deploytype: git
-
-      - name: Checkout
-        uses: cloudbees-io/checkout@v1
-      - uses: cashokannamalai/kubeconfig@v1
-        name: Set kubeconfig
-        with:
-          secname: ${{ secrets.kubeconfig }}
-      - uses: cloudbees-io/kustomize-deploy@v1
-        name: Deploy to cluster
-        kind: deploy
-        with:
-          kustomization-base-dir: ${{ cloudbees.workspace }}/k8s/base
-          kustomization-overlays-dir: ${{ cloudbees.workspace }}/k8s/overlays/prod
-          environment-variables: "{}"
+          
       - name: Publish evidence
         uses: cloudbees-io/publish-evidence-item@v1
         with:
