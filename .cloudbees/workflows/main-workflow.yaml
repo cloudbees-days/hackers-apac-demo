@@ -13,12 +13,20 @@ permissions:
 jobs:
   test:
     steps:
-      - name: provision resources through Terraform Cloud
-        uses: guru-actions/terraform-plan-apply-action@0.24
+      - uses: cloudbees-pyang/argocd-create-update-application@0.30
+        name: deployment through argocd
         with:
-          workspace-id: ${{ secrets.TERRAFORM_WORKSPACE_ID }}
-          token: ${{ secrets.TERRAFORM_TOKEN }}
-          auto-apply: true
+          serverurl: a68e2f2d9325d4c398c676143f593e29-390043336.eu-central-1.elb.amazonaws.com
+          user: ${{ vars.argocd_username }}
+          credential: ${{ secrets.argocd_cred }}
+          projectname: default
+          projectdescription: created via the cloudbees Unify
+          applicationname: hackers-apac-demo
+          repourl: https://github.com/cloudbees-days/hackers-apac-demo.git
+          destnamespace: applications
+          targetrevision: 0.1
+          repopath: chart
+          deploytype: git
 
       - name: Run Jenkins Jobs
         kind: test
@@ -178,7 +186,7 @@ jobs:
     environment: PAUL Production
     steps:
       - name: provision resources through Terraform Cloud
-        uses: guru-actions/terraform-plan-apply-action@0.2
+        uses: guru-actions/terraform-plan-apply-action@0.24
         with:
           workspace-id: ${{ secrets.terraform-workspace-id }}
           token: ${{ secrets.terraform-token }}
