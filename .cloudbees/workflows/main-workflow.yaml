@@ -13,21 +13,6 @@ permissions:
 jobs:
   test:
     steps:
-      - uses: cloudbees-pyang/argocd-create-update-application@0.30
-        name: deployment through argocd
-        with:
-          serverurl: a68e2f2d9325d4c398c676143f593e29-390043336.eu-central-1.elb.amazonaws.com
-          user: ${{ vars.argocd_username }}
-          credential: ${{ secrets.argocd_cred }}
-          projectname: default
-          projectdescription: created via the cloudbees Unify
-          applicationname: hackers-apac-demo
-          repourl: https://github.com/cloudbees-days/hackers-apac-demo.git
-          destnamespace: applications
-          targetrevision: 0.1
-          repopath: chart
-          deploytype: git
-
       - name: Run Jenkins Jobs
         kind: test
         uses: cloudbees-io/jenkins-run-job@v2
@@ -200,11 +185,11 @@ jobs:
           credential: ${{ secrets.argocd_cred }}
           projectname: default
           projectdescription: created via the cloudbees Unify
-          applicationname: hello-world
-          repourl: https://github.com/helm/examples.git
+          applicationname: hackers-apac-demo
+          repourl: https://github.com/cloudbees-days/hackers-apac-demo.git
           destnamespace: applications
-          targetrevision: hello-world-0.1.0
-          repopath: charts/hello-world
+          targetrevision: 0.1
+          repopath: chart
           deploytype: git
           
       - name: Publish evidence
