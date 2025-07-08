@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - "**"
-  workflow_dispatch:
 permissions:
   scm-token-own: read
   scm-token-org: read
@@ -176,7 +175,6 @@ jobs:
           workspace-id: ${{ secrets.terraform-workspace-id }}
           token: ${{ secrets.terraform-token }}
           auto-apply: true
-          
       - uses: cloudbees-pyang/argocd-create-update-application@0.30
         name: deployment through argocd
         with:
@@ -191,7 +189,6 @@ jobs:
           targetrevision: 0.1
           repopath: chart
           deploytype: git
-          
       - name: Publish evidence
         uses: cloudbees-io/publish-evidence-item@v1
         with:
@@ -201,7 +198,6 @@ jobs:
 
             Running hackers-organized:${{ cloudbees.scm.sha }}
           format: MARKDOWN
-
     needs:
       - build-container-image
       - scan
