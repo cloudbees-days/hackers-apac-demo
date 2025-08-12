@@ -5,6 +5,8 @@ import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 import store from './store'
 
+//change here
+
 Vue.use(Buefy)
 
 Vue.config.productionTip = false
