@@ -5,7 +5,7 @@ import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 import store from './store'
 
-//change here!
+//change here
 
 Vue.use(Buefy)
 
